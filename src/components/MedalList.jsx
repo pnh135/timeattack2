@@ -1,10 +1,14 @@
 import React from "react";
+import MedalItem from "./MedalItem";
+// import MedalItem from "./MedalItem";
 
 const MedalList = () => {
     return ( 
-        <div>
-            medals.map = 
-        </div>
+            {medals.map((medal) => {
+             <ul>
+             <MedalItem key={medal.id}/>
+             </ul>   
+            } )}
      );
 }
  

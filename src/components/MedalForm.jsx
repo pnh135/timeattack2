@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 const MedalForm = () => {
-    const [medals, setMedals] = useState([]);
+    const [{medals, setMedals}] = useState([]);
     const [country, setCountry] = useState("");
     const [gold, setGold] = useState(0);
     const [silver, setSliver] = useState(0);
@@ -16,12 +16,7 @@ const MedalForm = () => {
     }
 
     function AddedMedal (e) {
-        const medals = {
-            country: country,
-            gold: gold,
-            silver: silver,
-            bronze: bronze,
-        }
+        e.preventDefault()
 
         const newMedal = {
             country: parseInt(country),
@@ -30,7 +25,6 @@ const MedalForm = () => {
             bronze: parseInt(bronze),
             id: Date.now(),
         }
-
         setMedals([...medals, newMedal]);
 
         resetForm()
@@ -39,11 +33,13 @@ const MedalForm = () => {
     return ( 
         <div>
             <form onSubmit={AddedMedal} >
-                <input type="text" value="country" placeholder="메달을 입력하세요"/>
-                <input type="number" value="gold"/>
-                <input type="number" value="sliver"/>
-                <input type="number" value="bronze"/>
+                <input type="text" value="country" onChange={(e) =>setCountry(e.target.value)} placeholder="메달을 입력하세요"/>
+                <input type="number" value="gold" onChange={(e) =>setGold(e.target.value)}/>
+                <input type="number" value="sliver" onChange={(e) =>setSliver(e.target.value)}/>
+                <input type="number" value="bronze" onChange={(e) =>setBronze(e.target.value)} />
             </form>
+            <button>추가하기</button>
+            <button>업데이트</button>
         </div>
       );
 }
